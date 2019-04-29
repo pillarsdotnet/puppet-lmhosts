@@ -1,0 +1,5 @@
+---
+
+lmhosts::list:
+  - address: '127.0.0.1'
+    host:    'localhost'
