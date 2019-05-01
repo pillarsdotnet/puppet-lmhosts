@@ -36,10 +36,10 @@ class lmhosts(
   ],
   Boolean              $no_export = false,
   Boolean              $no_import = false,
-  Stdlib::Absolutepath $path      = $facts['kernel'] ? {
-    'windows' => "${facts['windows_env']['SYSTEMROOT']}\\System32\\drivers\\etc\\lmhosts",
-    default   => '/etc/samba/lmhosts',
-  }
+  Stdlib::Absolutepath $path      = [
+    '/etc/samba/lmhosts',
+    "${facts['windows_env']['SYSTEMROOT']}\\System32\\drivers\\etc\\lmhosts"
+  ][$facts['kernel'] ? { 'windows' => 1, default => 0 }]
 ){
   # Create the lmhosts file.
   concat { $path:

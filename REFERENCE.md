@@ -77,7 +77,10 @@ Data type: `Stdlib::Absolutepath`
 
 Absolute path to the lmhosts file to manage.
 
-Default value: $facts['kernel']
+Default value: [
+    '/etc/samba/lmhosts',
+    "${facts['windows_env']['SYSTEMROOT']}\\System32\\drivers\\etc\\lmhosts"
+  ][$facts['kernel'] ? { 'windows' => 1, default => 0 }]
 
 ### lmhosts::host::service
 
