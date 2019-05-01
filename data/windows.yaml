@@ -1,3 +1,0 @@
----
-
-lmhosts::path: '%{facts.windows_env.SYSTEMROOT}\System32\drivers\etc\lmhosts'
