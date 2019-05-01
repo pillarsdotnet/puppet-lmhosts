@@ -77,7 +77,7 @@ include ::lmhosts
     
 ## Reference
 
-See [`REFERENCE.md`](REFERENCE.md).
+See [`REFERENCE.md`](https://github.com/pillarsdotnet/puppet-lmhosts/blob/master/REFERENCE.md).
 
 ## Development
 
@@ -86,4 +86,4 @@ https://github.com/pillarsdotnet/puppet-lmhosts
 
 ## Changelog
 
-See [`CHANGELOG.md`](CHANGELOG.md).
+See [`CHANGELOG.md`](https://github.com/pillarsdotnet/puppet-lmhosts/blob/master/CHANGELOG.md).
