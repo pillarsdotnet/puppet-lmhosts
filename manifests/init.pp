@@ -15,23 +15,23 @@
 #       }
 #     ],
 #
-# @param [Boolean] export
-#   If true (default), export the current host for use by other nodes.
-#
-# @param [Boolean] import
-#   If true (default), add all exported host entries to this node's lmhosts file.
-#
 # @param [Lmhosts::List] list
 #   Ordered List of lmhosts entries.
+#
+# @param [Boolean] no_export
+#   If true, do not export the current host for use by other nodes.
+#
+# @param [Boolean] no_import
+#   If true, do not add exported host entries to this node's lmhosts file.
 #
 # @param [Stdlib::Absolutepath] path
 #   Absolute path to the lmhosts file to manage.
 #
 class lmhosts(
-  Boolean              $export = true,
-  Boolean              $import = true,
-  Lmhosts::List        $list   = [],
-  Stdlib::Absolutepath $path   = '/etc/hosts',
+  Lmhosts::List        $list      = [],
+  Boolean              $no_export = false,
+  Boolean              $no_import = false,
+  Stdlib::Absolutepath $path      = '/etc/hosts',
 ){
   # Create the lmhosts file.
   concat { $path:
@@ -50,10 +50,11 @@ class lmhosts(
   }
 
   # Export the current host.
-  if $export {
-    @@lmhosts::host { "${path} ${facts.networking['hostname']} (exported)":
-      address => $facts.networking.ip,
-      host    => $facts.networking.hostname,
+  unless $no_export {
+    $hostname = $facts['networking']['hostname']
+    @@lmhosts::host { "${path} ${hostname} (exported)":
+      address => $facts['networking']['ip'],
+      host    => $hostname,
       index   => 'catalog',
       path    => $path,
       preload => true,
@@ -61,7 +62,7 @@ class lmhosts(
   }
 
   # Collect all exported hosts.
-  if $import {
+  unless $no_import {
     Lmhosts::Host <<| |>>
   }
 }
