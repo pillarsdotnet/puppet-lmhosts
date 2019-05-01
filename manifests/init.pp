@@ -28,10 +28,18 @@
 #   Absolute path to the lmhosts file to manage.
 #
 class lmhosts(
-  Lmhosts::List        $list      = [],
+  Lmhosts::List        $list      = [
+    {
+      'address' => '127.0.0.1',
+      'host'    => 'localhost'
+    }
+  ],
   Boolean              $no_export = false,
   Boolean              $no_import = false,
-  Stdlib::Absolutepath $path      = '/etc/hosts',
+  Stdlib::Absolutepath $path      = $facts['kernel'] ? {
+    'windows' => "${facts['windows_env']['SYSTEMROOT']}\\System32\\drivers\\etc\\lmhosts",
+    default   => '/etc/samba/lmhosts',
+  }
 ){
   # Create the lmhosts file.
   concat { $path:
