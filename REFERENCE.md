@@ -12,7 +12,7 @@
 
 * [`lmhosts::alternates`](#lmhostsalternates): Adds an alternates block to the lmhosts file.
 * [`lmhosts::host`](#lmhostshost): Add a host entry to the lmhosts file.
-* [`lmhosts::include`](#lmhostsinclude): Add an #INCLUDE line to the lmhosts file.
+* [`lmhosts::include_path`](#lmhostsinclude_path): Add an #INCLUDE path to the lmhosts file.
 
 ## Classes
 
@@ -42,22 +42,6 @@ class { 'lmhosts' :
 
 The following parameters are available in the `lmhosts` class.
 
-##### `export`
-
-Data type: `Boolean`
-
-If true (default), export the current host for use by other nodes.
-
-Default value: `true`
-
-##### `import`
-
-Data type: `Boolean`
-
-If true (default), add all exported host entries to this node's lmhosts file.
-
-Default value: `true`
-
 ##### `list`
 
 Data type: `Lmhosts::List`
@@ -65,6 +49,22 @@ Data type: `Lmhosts::List`
 Ordered List of lmhosts entries.
 
 Default value: []
+
+##### `no_export`
+
+Data type: `Boolean`
+
+If true, do not export the current host for use by other nodes.
+
+Default value: `false`
+
+##### `no_import`
+
+Data type: `Boolean`
+
+If true, do not add exported host entries to this node's lmhosts file.
+
+Default value: `false`
 
 ##### `path`
 
@@ -107,7 +107,7 @@ The following parameters are available in the `lmhosts::alternates` defined type
 
 ##### `alternates`
 
-Data type: `Array[Lmhosts::Include::Path]`
+Data type: `Array[Lmhosts::Inc::Path]`
 
 The list of local or UNC file paths to load.
 
@@ -218,7 +218,7 @@ An optional integer service code.  See $lmhosts::host::service
 
 Default value: `undef`
 
-### lmhosts::include
+### lmhosts::include_path
 
 If the order and path are unspecified, the title must
 consist of a filepath followed by a space and a valid
@@ -229,16 +229,16 @@ order string.
 ##### 
 
 ```puppet
-lmhosts::include { '/etc/lmhosts 1234':
-  include => '//pdc/share/lmhosts',
+lmhosts::include_path { '/etc/lmhosts 1234':
+  include_path => '//pdc/share/lmhosts',
 }
 ```
 
 #### Parameters
 
-The following parameters are available in the `lmhosts::include` defined type.
+The following parameters are available in the `lmhosts::include_path` defined type.
 
-##### `include`
+##### `include_path`
 
 Data type: `Lmhosts::Include::Path`
 

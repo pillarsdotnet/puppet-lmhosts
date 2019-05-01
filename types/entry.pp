@@ -4,5 +4,5 @@
 type Lmhosts::Entry = Variant[
   Lmhosts::Alternates::Resource,
   Lmhosts::Host::Resource,
-  Lmhosts::Include::Resource,
+  Lmhosts::Include_path::Resource,
 ]

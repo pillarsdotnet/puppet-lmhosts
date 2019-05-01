@@ -11,7 +11,7 @@
 #     ]
 #   }
 #
-# @param [Array[Lmhosts::Include::Path]] alternates
+# @param [Array[Lmhosts::Include_path::Path]] alternates
 #   The list of local or UNC file paths to load.
 #
 # @param [Lmhosts::Order] index
@@ -21,9 +21,9 @@
 #   The file path of the lmhosts file being managed.
 #
 define lmhosts::alternates (
-  Array[Lmhosts::Include::Path] $alternates,
-  Lmhosts::Order                $index = $title.regsubst(/\A(.+)[ ]([0-9.]+)\z/,'\\2'),
-  Stdlib::Absolutepath          $path  = $title.regsubst(/\A(.+)[ ]([0-9.]+)\z/,'\\1'),
+  Array[Lmhosts::Include_path::Path] $alternates,
+  Lmhosts::Order                     $index = $title.regsubst(/\A(.+)[ ]([0-9.]+)\z/,'\\2'),
+  Stdlib::Absolutepath               $path  = $title.regsubst(/\A(.+)[ ]([0-9.]+)\z/,'\\1'),
 ) {
   $order = $index ? {
     Integer => String($index, '%04d'),
@@ -34,10 +34,10 @@ define lmhosts::alternates (
     order   => "${order}.0000",
     target  => $path,
   }
-  $alternates.each |Integer[1] $subindex, Lmhosts::Include::Path $include| {
+  $alternates.each |Integer[1] $subindex, Lmhosts::Inc::Path $inc| {
     $suborder = String($subindex, '%04d')
     $subtitle = "${path} ${order}.${suborder}"
-    create_resources('lmhosts::include', { $subtitle => { 'include' => $include } })
+    create_resources('lmhosts::inc', { $subtitle => { 'inc' => $inc } })
   }
   concat::fragment { "lmhosts::alternate::end ${title}":
     content => "#END_ALTERNATE\r\n",
