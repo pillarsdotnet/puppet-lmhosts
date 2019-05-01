@@ -3,7 +3,7 @@
 #
 type Lmhosts::Alternates::Resource = Struct[
   {
-    alternates      => Array[Lmhosts::Include::Path],
+    alternates      => Array[Lmhosts::Include_path::Path],
     Optional[index] => Lmhosts::Order,
     Optional[path]  => Stdlib::Absolutepath,
   }

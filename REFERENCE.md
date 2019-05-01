@@ -48,7 +48,12 @@ Data type: `Lmhosts::List`
 
 Ordered List of lmhosts entries.
 
-Default value: []
+Default value: [
+    {
+      'address' => '127.0.0.1',
+      'host'    => 'localhost'
+    }
+  ]
 
 ##### `no_export`
 
@@ -72,7 +77,7 @@ Data type: `Stdlib::Absolutepath`
 
 Absolute path to the lmhosts file to manage.
 
-Default value: '/etc/hosts'
+Default value: $facts['kernel']
 
 ### lmhosts::host::service
 
@@ -107,7 +112,7 @@ The following parameters are available in the `lmhosts::alternates` defined type
 
 ##### `alternates`
 
-Data type: `Array[Lmhosts::Inc::Path]`
+Data type: `Array[Lmhosts::Include_path::Path]`
 
 The list of local or UNC file paths to load.
 
@@ -240,7 +245,7 @@ The following parameters are available in the `lmhosts::include_path` defined ty
 
 ##### `include_path`
 
-Data type: `Lmhosts::Include::Path`
+Data type: `Lmhosts::Include_path::Path`
 
 Local path or UNC of the lmhosts fragment to include.
 
