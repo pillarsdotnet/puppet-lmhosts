@@ -22,8 +22,8 @@
 #
 define lmhosts::alternates (
   Array[Lmhosts::Include_path::Path] $alternates,
-  Lmhosts::Order                     $index = $title.regsubst(/\A(.+)[ ]([0-9.]+)\z/,'\\2'),
-  Stdlib::Absolutepath               $path  = $title.regsubst(/\A(.+)[ ]([0-9.]+)\z/,'\\1'),
+  Lmhosts::Order                     $index = regsubst($title, /\A(.+)[ ]([0-9.]+)\z/,'\\2'),
+  Stdlib::Absolutepath               $path  = regsubst($title, /\A(.+)[ ]([0-9.]+)\z/,'\\1'),
 ) {
   $order = $index ? {
     Integer => String($index, '%04d'),

@@ -41,10 +41,10 @@ define lmhosts::host (
   Stdlib::IP::Address::V4::Nosubnet $address,
   Enum['absent','present']          $ensure   = 'present',
   Optional[Lmhosts::Host::Name]     $domain   = undef,
-  Lmhosts::Host::Name               $host     = $title.regsubst(/\A(.+)[ ]([^\\\/:*?"<>|]{1,15})\z/,'\\2'),
+  Lmhosts::Host::Name               $host     = regsubst($title, /\A(.+)[ ]([^\\\/:*?"<>|]{1,15})\z/,'\\2'),
   Optional[Lmhosts::Order]          $index    = undef,
   Boolean                           $multiple = false,
-  Stdlib::Absolutepath              $path     = $title.regsubst(/\A(.+)[ ]([^\\\/:*?"<>|]{1,15})\z/,'\\1'),
+  Stdlib::Absolutepath              $path     = regsubst($title, /\A(.+)[ ]([^\\\/:*?"<>|]{1,15})\z/,'\\1'),
   Boolean                           $preload  = false,
   Optional[Integer[0x00,0xff]]      $service  = undef,
 ) {

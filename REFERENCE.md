@@ -125,7 +125,7 @@ Data type: `Lmhosts::Order`
 
 Used by stdlib::concat to assemble lmhosts fragments in the correct order.
 
-Default value: (/\A(.+)[ ]([0-9.]+)\z/,'\\2')
+Default value: regsubst($title, /\A(.+)[ ]([0-9.]+)\z/,'\\2')
 
 ##### `path`
 
@@ -133,7 +133,7 @@ Data type: `Stdlib::Absolutepath`
 
 The file path of the lmhosts file being managed.
 
-Default value: (/\A(.+)[ ]([0-9.]+)\z/,'\\1')
+Default value: regsubst($title, /\A(.+)[ ]([0-9.]+)\z/,'\\1')
 
 ### lmhosts::host
 
@@ -184,7 +184,7 @@ Data type: `Lmhosts::Host::Name`
 
 The netbios name of this computer or service.
 
-Default value: (/\A(.+)[ ]([^\\\/:*?"<>|]{1,15})\z/,'\\2')
+Default value: regsubst($title, /\A(.+)[ ]([^\\\/:*?"<>|]{1,15})\z/,'\\2')
 
 ##### `index`
 
@@ -208,7 +208,7 @@ Data type: `Stdlib::Absolutepath`
 
 The location of the lmhosts file.
 
-Default value: (/\A(.+)[ ]([^\\\/:*?"<>|]{1,15})\z/,'\\1')
+Default value: regsubst($title, /\A(.+)[ ]([^\\\/:*?"<>|]{1,15})\z/,'\\1')
 
 ##### `preload`
 
@@ -258,7 +258,7 @@ Data type: `Lmhosts::Order`
 
 Used by stdlib::concat to assemble lmhosts fragments in the correct order.
 
-Default value: (/\A(.+)[ ]([0-9.]+)\z/,'\\2')
+Default value: regsubst($title, /\A(.+)[ ]([0-9.]+)\z/,'\\2')
 
 ##### `path`
 
@@ -266,5 +266,5 @@ Data type: `Stdlib::Absolutepath`
 
 The file path of the lmhosts file being managed.
 
-Default value: (/\A(.+)[ ]([0-9.]+)\z/,'\\1')
+Default value: regsubst($title, /\A(.+)[ ]([0-9.]+)\z/,'\\1')
 
