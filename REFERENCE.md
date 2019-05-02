@@ -214,9 +214,9 @@ Default value: regsubst($title, /\A(.+)[ ]([^\\\/:*?"<>|]{1,15})\z/, '\\1')
 
 Data type: `Boolean`
 
-If true, this entry should be preloaded into cache.
+If true (default), this entry should be preloaded into cache.
 
-Default value: `false`
+Default value: `true`
 
 ##### `service`
 
