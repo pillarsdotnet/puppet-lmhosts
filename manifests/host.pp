@@ -32,7 +32,7 @@
 #   The location of the lmhosts file.
 #
 # @param [Boolean] preload
-#   If true, this entry should be preloaded into cache.
+#   If true (default), this entry should be preloaded into cache.
 #
 # @param [Optional[Integer[0x00,0xff]]] service
 #   An optional integer service code.  See $lmhosts::host::service
@@ -45,7 +45,7 @@ define lmhosts::host (
   Optional[Lmhosts::Order]          $index    = undef,
   Boolean                           $multiple = false,
   Stdlib::Absolutepath              $path     = regsubst($title, /\A(.+)[ ]([^\\\/:*?"<>|]{1,15})\z/, '\\1'),
-  Boolean                           $preload  = false,
+  Boolean                           $preload  = true,
   Optional[Integer[0x00,0xff]]      $service  = undef,
 ) {
   $_address = sprintf('%-15s', $address)
