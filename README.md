@@ -1,6 +1,6 @@
 # lmhosts
 
-#### Table of Contents
+## Table of Contents
 
 1. [Description](#description)
 2. [Setup - The basics of getting started with lmhosts](#setup)
@@ -18,7 +18,7 @@ pre-loaded without performing any network lookups.
 
 ## Setup
 
-For use with [`r10k`](https://puppet.com/docs/pe/latest/r10k.html) or 
+For use with [`r10k`](https://puppet.com/docs/pe/latest/r10k.html) or
 [`g10k`](https://github.com/xorpaul/g10k), add an entry to your
 [`Puppetfile`](https://puppet.com/docs/pe/latest/puppetfile.html) as follows:
 
@@ -48,16 +48,16 @@ module is required. Non-windows clients may ignore this dependency.
 
 ## Usage
 
-### Generate a standard lmhosts file.
+### Generate a standard lmhosts file
 
 This will create an lmhosts file containing an entry for `localhost`, plus one
 host entry for each node in the catalog.
 
-```
+```puppet
 include ::lmhosts
 ```
 
-### Add static entries for localhost and CORP-PDC.
+### Add static entries for localhost and CORP-PDC
 
 #### hieradata
 
@@ -71,10 +71,10 @@ lmhosts::list:
 
 #### puppet
 
-```
+```puppet
 include ::lmhosts
 ```
-    
+
 ## Reference
 
 See [`REFERENCE.md`](https://github.com/pillarsdotnet/puppet-lmhosts/blob/master/REFERENCE.md).
@@ -82,7 +82,7 @@ See [`REFERENCE.md`](https://github.com/pillarsdotnet/puppet-lmhosts/blob/master
 ## Development
 
 Submit bug-reports, issues, and pull-requests to
-https://github.com/pillarsdotnet/puppet-lmhosts
+[https://github.com/pillarsdotnet/puppet-lmhosts](https://github.com/pillarsdotnet/puppet-lmhosts])
 
 ## Changelog
 
