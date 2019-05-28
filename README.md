@@ -82,7 +82,7 @@ See [`REFERENCE.md`](https://github.com/pillarsdotnet/puppet-lmhosts/blob/master
 ## Development
 
 Submit bug-reports, issues, and pull-requests to
-[https://github.com/pillarsdotnet/puppet-lmhosts](https://github.com/pillarsdotnet/puppet-lmhosts])
+[https://github.com/pillarsdotnet/puppet-lmhosts](https://github.com/pillarsdotnet/puppet-lmhosts]).
 
 ## Changelog
 
