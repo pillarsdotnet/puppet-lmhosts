@@ -23,7 +23,7 @@ found at http://bit.ly/2L2zaYJ
 
 #### Examples
 
-##### 
+#####
 
 ```puppet
 class { 'lmhosts' :
@@ -98,7 +98,7 @@ available and ignoring the rest.
 
 #### Examples
 
-##### 
+#####
 
 ```puppet
 lmhosts::alternates { '/etc/lmhosts 1234':
@@ -142,7 +142,7 @@ optional flags.
 
 #### Examples
 
-##### 
+#####
 
 ```puppet
 lmhosts::host { '/etc/lmhosts localhost':
@@ -234,7 +234,7 @@ order string.
 
 #### Examples
 
-##### 
+#####
 
 ```puppet
 lmhosts::include_path { '/etc/lmhosts 1234':
@@ -267,4 +267,3 @@ Data type: `Stdlib::Absolutepath`
 The file path of the lmhosts file being managed.
 
 Default value: regsubst($title, /\A(.+)[ ]([0-9.]+)\z/, '\\1')
-
