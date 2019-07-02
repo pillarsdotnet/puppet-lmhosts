@@ -59,10 +59,11 @@ class lmhosts(
 
   # Export the current host.
   unless $no_export {
-    $hostname = $facts['networking']['hostname']
-    @@lmhosts::host { "${path} ${hostname} (exported)":
-      address => $facts['networking']['ip'],
-      host    => $hostname,
+    $host = $facts['networking']['hostname']
+    $addr = $facts['networking']['ip']
+    @@lmhosts::host { "${path} ${host} ${addr}":
+      address => $addr,
+      host    => $host,
       index   => 'catalog',
       path    => $path,
       preload => true,
