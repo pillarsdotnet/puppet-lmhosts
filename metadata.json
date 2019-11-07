@@ -3,7 +3,7 @@
   "dependencies": [
     {
       "name": "puppetlabs/stdlib",
-      "version_requirement": ">= 5.0.0 < 6.0.0"
+      "version_requirement": ">= 5.0.0 < 7.0.0"
     },
     {
       "name": "puppet/windows_env",
@@ -17,45 +17,52 @@
     {
       "operatingsystem": "CentOS",
       "operatingsystemrelease": [
-        "7"
+        "7",
+	"8"
       ]
     },
     {
       "operatingsystem": "OracleLinux",
       "operatingsystemrelease": [
-        "7"
+        "7",
+	"8"
       ]
     },
     {
       "operatingsystem": "RedHat",
       "operatingsystemrelease": [
-        "7"
+        "7",
+	"8"
       ]
     },
     {
       "operatingsystem": "Scientific",
       "operatingsystemrelease": [
-        "7"
+        "7",
+	"8"
       ]
     },
     {
       "operatingsystem": "Debian",
       "operatingsystemrelease": [
-        "8"
+        "8",
+	"8"
       ]
     },
     {
       "operatingsystem": "Ubuntu",
       "operatingsystemrelease": [
-        "16.04"
+        "16.04",
+        "18.04",  
       ]
     },
     {
       "operatingsystem": "windows",
       "operatingsystemrelease": [
+        "10",
         "2008 R2",
         "2012 R2",
-        "10"
+	"2016 R2"
       ]
     },
     {
@@ -67,7 +74,8 @@
     {
       "operatingsystem": "SLES",
       "operatingsystemrelease": [
-        "12"
+        "12",
+	"13"
       ]
     },
     {
@@ -79,7 +87,10 @@
     {
       "operatingsystem": "Fedora",
       "operatingsystemrelease": [
-        "25"
+        "25",
+	"26",
+	"27",
+	"28"
       ]
     }
   ],
@@ -95,5 +106,5 @@
   "summary": "Manages the lmhosts file.",
   "template-ref": "1.10.0-0-gbba9ac3",
   "template-url": "file:///opt/puppetlabs/pdk/share/cache/pdk-templates.git#1.10.0",
-  "version": "0.1.9"
+  "version": "0.2.0"
 }

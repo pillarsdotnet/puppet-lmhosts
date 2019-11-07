@@ -48,6 +48,10 @@ define lmhosts::host (
   Boolean                           $preload  = true,
   Optional[Integer[0x00,0xff]]      $service  = undef,
 ) {
+  $winpath = $facts['kernel'] ? {
+    'windows' => $path.downcase,
+    default   => $path
+  }
   $_address = sprintf('%-15s', $address)
   $_domain = $domain ? {
     undef   => '',
@@ -69,6 +73,6 @@ define lmhosts::host (
   concat::fragment { "lmhosts::host ${title}":
     content => "${_content}\r\n",
     order   => $index,
-    target  => $path,
+    target  => $winpath,
   }
 }

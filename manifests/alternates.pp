@@ -25,6 +25,10 @@ define lmhosts::alternates (
   Lmhosts::Order                     $index = regsubst($title, /\A(.+)[ ]([0-9.]+)\z/, '\\2'),
   Stdlib::Absolutepath               $path  = regsubst($title, /\A(.+)[ ]([0-9.]+)\z/, '\\1'),
 ) {
+  $winpath = $facts['kernel'] ? {
+    'windows' => $path.downcase,
+    default   => $path
+  }
   $order = $index ? {
     Integer => String($index, '%04d'),
     default => $index,
@@ -32,16 +36,21 @@ define lmhosts::alternates (
   concat::fragment { "lmhosts::alternate::begin ${title}":
     content => "#BEGIN_ALTERNATE\r\n",
     order   => "${order}.0000",
-    target  => $path,
+    target  => $winpath,
   }
-  $alternates.each |Integer[1] $subindex, Lmhosts::Inc::Path $inc| {
+  $alternates.each |Integer[1] $subindex, Lmhosts::Include_Path::Path $inc| {
     $suborder = String($subindex, '%04d')
     $subtitle = "${path} ${order}.${suborder}"
-    create_resources('lmhosts::inc', { $subtitle => { 'inc' => $inc } })
+    create_resources(
+      'lmhosts::include_path',
+      { $subtitle =>
+        { 'include_path' => $inc }
+      }
+    )
   }
   concat::fragment { "lmhosts::alternate::end ${title}":
     content => "#END_ALTERNATE\r\n",
     order   => "${order}.9999",
-    target  => $path,
+    target  => $winpath,
   }
 }

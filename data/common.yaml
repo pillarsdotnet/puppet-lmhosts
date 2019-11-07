@@ -1,0 +1,10 @@
+---
+
+lmhosts::list:
+  - address: '127.0.0.1'
+    host: 'localhost'
+
+lmhosts::no_export: false
+lmhosts::no_import: false
+
+lmhosts::path: '/etc/samba/lmhosts'

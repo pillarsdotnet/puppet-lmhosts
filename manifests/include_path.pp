@@ -23,6 +23,10 @@ define lmhosts::include_path (
   Lmhosts::Order              $index = regsubst($title, /\A(.+)[ ]([0-9.]+)\z/, '\\2'),
   Stdlib::Absolutepath        $path  = regsubst($title, /\A(.+)[ ]([0-9.]+)\z/, '\\1'),
 ) {
+  $winpath = $facts['kernel'] ? {
+    'windows' => $path.downcase,
+    default   => $path
+  }
   $order = $index ? {
     Integer => String($index, '%04d'),
     default => $index,
@@ -30,6 +34,6 @@ define lmhosts::include_path (
   concat::fragment { "lmhosts::include_path ${title}":
     content => "#INCLUDE ${include_path}\r\n",
     order   => $order,
-    target  => $path,
+    target  => $winpath,
   }
 }

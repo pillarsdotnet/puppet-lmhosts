@@ -28,21 +28,19 @@
 #   Absolute path to the lmhosts file to manage.
 #
 class lmhosts(
-  Lmhosts::List        $list      = [
-    {
-      'address' => '127.0.0.1',
-      'host'    => 'localhost'
-    }
-  ],
-  Boolean              $no_export = false,
-  Boolean              $no_import = false,
-  Stdlib::Absolutepath $path      = [
-    '/etc/samba/lmhosts',
-    "${facts['windows_env']['SYSTEMROOT']}\\System32\\drivers\\etc\\lmhosts"
-  ][$facts['kernel'] ? { 'windows' => 1, default => 0 }]
+  Lmhosts::List        $list,
+  Boolean              $no_export,
+  Boolean              $no_import,
+  Stdlib::Absolutepath $path,
 ){
+  # Downcase windows paths.
+  $winpath = $facts['kernel'] ? {
+    'windows' => $path.downcase,
+    default   => $path
+  }
+
   # Create the lmhosts file.
-  concat { $path:
+  concat { $winpath:
     ensure => 'present',
   }
 
@@ -54,18 +52,18 @@ class lmhosts(
       Lmhosts::Include::Resource    => 'lmhosts::include',
     }
     $order = String($index, '%04d')
-    create_resources($type, { "${path} ${order}" => $entry })
+    create_resources($type, { "${winpath} ${order}" => $entry })
   }
 
   # Export the current host.
   unless $no_export {
     $host = $facts['networking']['hostname']
     $addr = $facts['networking']['ip']
-    @@lmhosts::host { "${path} ${host} ${addr}":
+    @@lmhosts::host { "${winpath} ${host} ${addr}":
       address => $addr,
       host    => $host,
       index   => 'catalog',
-      path    => $path,
+      path    => $winpath,
       preload => true,
     }
   }

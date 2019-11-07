@@ -1,0 +1,16 @@
+---
+
+# Hiera 5 Global configuration file
+
+defaults:
+  data_hash: 'yaml_data'
+  datadir:   'data'
+
+hierarchy:
+  - name: 'OS Kernel'
+    path: 'os/%{facts.kernel}.yaml'
+
+  - name: 'Common data'
+    path: 'common.yaml'
+
+version: 5
