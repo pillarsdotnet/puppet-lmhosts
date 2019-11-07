@@ -1,6 +1,6 @@
 ---
 
-# Hiera 5 Global configuration file
+# Hiera 5 In-Module Configuration
 
 defaults:
   data_hash: 'yaml_data'
@@ -8,7 +8,7 @@ defaults:
 
 hierarchy:
   - name: 'OS Kernel'
-    path: 'os/%{facts.kernel}.yaml'
+    path: '%{facts.kernel}.yaml'
 
   - name: 'Common data'
     path: 'common.yaml'
